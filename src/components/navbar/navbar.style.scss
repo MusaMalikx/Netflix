@@ -1,0 +1,87 @@
+.Nav {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    .navbar {
+        color: var(--main-color);
+        font-size: 14px;
+        top: 0;
+        background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.3) 50%);
+
+        &.scrolled {
+            background: #eeeeee;
+            border: 2px solid var(--appcolor);
+            .link {
+                color: var(--color);
+            }
+        }
+
+        .link {
+            color: var(--main-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .link:hover {
+            color: var(--appcolor);
+            font-weight: 600;
+        }
+
+        .container {
+            padding: 0px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+            text-decoration: none;
+
+            .left {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .logo {
+                    height: 40px;
+                    width: 100px;
+                    margin-right: 20px;
+                }
+
+                .option {
+                    flex: 1;
+                    margin: 0px 10px;
+                }
+            }
+
+            .right {
+                display: flex;
+                align-items: center;
+
+                .icon {
+                    margin: 0px 15px;
+                    cursor: pointer;
+                }
+
+                .profile {
+                    .opt {
+                        display: none;
+                        //color: var(--color);
+                        border-radius: 5px;
+
+                        span {
+                            padding: 10px;
+                            cursor: pointer;
+                        }
+                    }
+
+                    &:hover {
+                        .opt {
+                            display: flex;
+                            flex-direction: column;
+                            position: absolute;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

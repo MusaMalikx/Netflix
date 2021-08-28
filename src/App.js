@@ -1,57 +1,94 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { Switch, Route, Redirect } from "react-router-dom";
+import Home from "./pages/home/home.page";
+import Preview from "./pages/preview/preview.page";
+import Movie from "./pages/movie/movie.page";
+import TvShows from "./pages/tv/tv.page";
+import NewPopular from "./pages/new-popular/new-popular.page";
+import Kid from "./pages/kid/kid.page";
+import Login from "./pages/login/login.page";
+import Register from "./pages/register/register.page";
+import SignUP from "./pages/sign-up/sign-up.page";
+import { useEffect } from "react";
+import { auth } from "./firebase/firebase";
+import { useDispatch, useSelector } from 'react-redux';
+import { login, logout, selectUser, selectVerification, verify } from './features/user/userSlice';
+import Profile from './pages/profile/profile.page';
+import './App.scss';
+import Verification from './pages/verification/verification.page';
 
 function App() {
+
+  const user = useSelector(selectUser);
+
+  const dispatch = useDispatch();
+  const emailVerification = useSelector(selectVerification);
+
+  useEffect(() => {
+    const subscription = auth.onAuthStateChanged(userAuth => {
+      if (userAuth) {
+        //log in
+        dispatch(login(
+          {
+            uid: userAuth.uid,
+            email: userAuth.email,
+          }
+        ));
+        dispatch(verify(auth.currentUser.emailVerified));
+        console.log(emailVerification);
+      }
+      else {
+        //logout 
+        dispatch(logout());
+      }
+    });
+
+    return subscription;
+
+  }, [dispatch, emailVerification])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <Switch>
+      <Route exact path="/">
+        {(user) ? <Home /> : <Redirect to="/register" />}
+      </Route>
+      <Route path='/register'>
+        {!user ? <Register /> : <Redirect to="/" />}
+      </Route>
+      <Route path='/sign-up'>
+        {!user ? <SignUP /> : !emailVerification ? <Redirect to="/verification" /> : <Redirect to="/" />}
+      </Route>
+      <Route path='/login'>
+        {!user ? <Login /> : !emailVerification ? <Redirect to="/verification" /> : <Redirect to="/" />}
+      </Route>
+      <Route path='/profile'>
+        {user ? <Profile /> : <Redirect to="/login" />}
+      </Route>
+      <Route path='/verification'>
+        {(user && !emailVerification) ? <Verification /> : emailVerification && <Redirect to="/" />}
+      </Route>
+      {
+        user && emailVerification && (
+          <>
+            <Route path="/preview">
+              <Preview />
+            </Route>
+            <Route path="/movies">
+              <Movie />
+            </Route>
+            <Route path="/tv-shows">
+              <TvShows />
+            </Route>
+            <Route path="/new-and-popular">
+              <NewPopular />
+            </Route>
+            <Route path="/kid">
+              <Kid />
+            </Route>
+          </>
+        )
+      }
+    </Switch>
   );
 }
 

@@ -1,0 +1,30 @@
+.episode{
+
+    margin: 30px 0px;
+    display: flex;
+
+    img{
+        width: 300px;
+        border-radius: 4px;
+        border:2px solid white;
+    }
+
+    .context{
+        padding: 10px 20px;
+
+        h2{
+            font-family: 'Montserrat', sans-serif;
+            color: #FF2626;
+            padding-bottom: 20px;
+            font-weight: 600;
+        }
+
+        p{
+            font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+            color: #420516;
+            font-weight: 600;
+        }
+
+    }
+
+}

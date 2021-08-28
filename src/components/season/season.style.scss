@@ -1,0 +1,13 @@
+.season{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    margin: 50px;
+    text-align: center;
+}
+
+.season::-webkit-scrollbar{
+    visibility: hidden;
+}

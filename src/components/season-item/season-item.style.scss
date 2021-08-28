@@ -1,0 +1,24 @@
+.season-item {
+    margin: 10px 20px;
+    cursor: pointer;
+    transition: transform 450ms;
+    .image {
+        height: 200px;
+        border: 2px solid var(--color);
+        border-radius: 5px;
+    }
+
+    p {
+        margin-top: 10px;
+    }
+}
+
+.season-item:hover {
+    color: var(--appcolor);
+    font-weight: 500;
+    transform: scale(1.08);
+
+    .image {
+        border: 2px solid var(--appcolor);
+    }
+}

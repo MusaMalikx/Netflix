@@ -1,0 +1,9 @@
+.video{
+    margin-left: 30px;
+    display: flex;
+    overflow-x: scroll;
+}
+
+.video::-webkit-scrollbar{
+    visibility: hidden;
+}

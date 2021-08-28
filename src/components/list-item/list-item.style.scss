@@ -1,0 +1,17 @@
+.list-item {
+            
+    max-height: 190px;
+    margin-right: 10px;
+    object-fit: contain;
+    width:128px;
+    transition: transform 450ms;
+    color: var(--color);
+    border: 2px solid var(--color);
+}
+
+.list-item:hover{
+    transform: scale(1.08);
+    opacity: 1;
+    cursor: pointer;
+    border: 2px solid var(--appcolor);
+}

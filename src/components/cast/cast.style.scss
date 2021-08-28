@@ -1,0 +1,17 @@
+h1{
+    font-family: 'Ubuntu', sans-serif;
+    margin-left: 30px;
+    margin-top: 50px;
+}
+
+.cast{
+    display: flex;
+    flex-direction: row;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    margin: 0px 30px;
+}
+
+.cast::-webkit-scrollbar{
+    visibility: hidden;
+}

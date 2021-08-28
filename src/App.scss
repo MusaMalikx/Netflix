@@ -1,0 +1,19 @@
+:root {
+    --main-color: white;
+    --color: black;
+    --appcolor: #df2e2e;
+    --side:#EEEEEE;
+}
+
+body {
+    background-color: var(--main-color);
+    color: var(--color);
+}
+
+h1{
+    font-family: "Ubuntu", sans-serif;
+}
+
+p{
+    font-family: "Montserrat", sans-serif;
+}

@@ -1,0 +1,1 @@
+//!type ? setTp(movie.media_type) : setTp(type)
